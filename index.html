@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='https://mmwebfonts.comquas.com/fonts/?font=myanmar3' />
+
+    <style>
+        body {
+            font-family: "Noto Sans Myanmar","Pyidaungsu";
+            font-size: .9em;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            margin-top: 50px ;
+            text-align: center;
+            -background-color: #333;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            overflow: hidden;
+        }
+
+        .LOGO{
+            background-color: #202020;
+            text-align: center;
+        }
+
+        #logo {
+            width: 130px;
+            display: inline-block;
+            vertical-align: middle;
+
+        }
+
+        h1 {
+            display: inline-block; /*Importent i forget*/
+            vertical-align: middle;
+            margin-left: 10px; /* Adjust the margin between the logo and text */
+            color: #fff;
+            font-size: 30px;
+        }
+
+        h2 {
+            color: #202020;
+        }
+
+        h6 {
+            display: inline-block; /*Importent i forget*/
+            vertical-align: text-top;
+            margin-left: 10px; /* Adjust the margin between the logo and text */
+            color: #fff;
+            font-size: 10px;
+        }
+
+        #Unicode {
+            color: white;
+            text-align: center;
+        }
+
+        #unicode {
+            min-height: 30rem;
+            background-color: #ffffff;
+        }
+
+        .wrapped-text {
+            width: 50%;
+            border: 1px solid #ccc;
+            padding: 10px;
+            word-wrap: break-word; /* Enable word wrapping */
+            overflow-wrap: break-word; /* Additional property for better compatibility */
+        }
+
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hover effect for the button */
+        button:hover {
+            background-color: #45a049;
+        }
+
+        textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize:vertical;
+            font-size: 16px;
+            outline: none; /* Remove the default focus border */
+        }
+
+        textarea:focus {
+            border-color: #007bff;
+        }
+
+        /* Optional: Add some hover effect */
+        textarea:hover {
+            border-color: #999;
+        }
+
+        /* Optional: Add a transition effect for a smoother hover effect */
+        textarea {
+            transition: border-color 0.3s ease;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="LOGO">
+        <div>
+        <img id="logo" src="/MPA World/Access/001.png" alt="Logo">
+        <h1>Myanmar Pressphoto Agency</h1>
+        <h6>Editor Word</h6>
+        </div>
+    </header>
+
+<!-- Your page content goes here -->
+
+<div id="textContainer">
+
+    <section id="Unicode">
+        <h2>News Editor</h2>
+        <textarea id="unicode" class="wrapped-text"></textarea>
+    </section>
+
+    <nav>
+        <a><button onclick="pasteFromClipboard()">Paste</button></a>
+        <a><button type="button" value="Past Unicode" onclick="copyUnicode()">Copy</button></a>
+        <a><button onclick="selectAllText()">Select All</button></a>
+        <a><button onclick="clearTextarea()">Clear</button></a>
+        <a href="#contact"><button onclick="refreshPage()">Refresh</button></a>
+    </nav>
+
+</div>
+
+<script>
+    function copyUnicode() {
+  /* Get the text field */
+  var copyText = document.getElementById("unicode");
+
+  /* Select the text field */
+  copyText.select(); 
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+}
+
+function pasteFromClipboard() {
+        navigator.clipboard.readText()
+            .then(text => {
+                document.getElementById('unicode').value = text;
+            })
+            .catch(err => {
+                console.error('Failed to read clipboard contents: ', err);
+            });
+    }
+
+function refreshPage() {
+        location.reload();
+    }
+
+function clearTextarea() {
+        document.getElementById('unicode').value = '';
+    }
+
+function selectAllText() {
+        var textarea = document.getElementById('unicode');
+        textarea.select();
+    }
+
+</script>
+</body>
+</html>
